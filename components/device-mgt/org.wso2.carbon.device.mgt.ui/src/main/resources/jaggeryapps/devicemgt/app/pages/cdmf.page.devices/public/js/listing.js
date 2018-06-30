@@ -410,14 +410,15 @@ function loadDevices(searchType, searchParam) {
         }else{
             $(row).attr('data-type', 'non-selectable');
         }
-        
+
+        var cleanedOwner = data.userPattern.replace("&#39;", "'");
         $(row).attr('data-deviceid', htmlspecialchars(data.deviceIdentifier));
         $(row).attr('data-devicetype', htmlspecialchars(data.deviceType));
         $(row).attr('data-url', context + '/device/' + htmlspecialchars(data.deviceType) + '?id='
-                + htmlspecialchars(data.deviceIdentifier) + '&owner=' + htmlspecialchars(data.userPattern)) ;
+                + htmlspecialchars(data.deviceIdentifier) + '&owner=' + cleanedOwner ;
         var model = htmlspecialchars(getPropertyValue(data.properties, 'DEVICE_MODEL'));
         var vendor = htmlspecialchars(getPropertyValue(data.properties, 'VENDOR'));
-        var owner = htmlspecialchars(data.userPattern);
+        var owner = cleanedOwner
         var status = htmlspecialchars(data.status);
         var ownership = htmlspecialchars(data.ownership);
         var deviceType = htmlspecialchars(data.deviceType);

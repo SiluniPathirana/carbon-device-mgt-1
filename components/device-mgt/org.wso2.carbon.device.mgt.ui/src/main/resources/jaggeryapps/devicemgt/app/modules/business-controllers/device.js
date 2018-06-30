@@ -64,6 +64,7 @@ deviceModule = function () {
      @Updated
      */
     publicMethods.viewDevice = function (deviceType, deviceId, owner) {
+        var cleanedOwner = owner.replace(" ","%20");
         var carbonUser = session.get(constants["USER_SESSION_KEY"]);
         if (!carbonUser) {
             log.error("User object was not found in the session");
@@ -113,8 +114,8 @@ deviceModule = function () {
         try {
             utility.startTenantFlow(carbonUser);
             var url = devicemgtProps["httpsURL"] + "/api/device-mgt/v1.0/devices/" + deviceType + "/" + deviceId;
-            if (owner) {
-               url = url + "?owner=" + owner;
+            if (cleanedOwner) {
+               url = url + "?owner=" + cleanedOwner;
             }
             return serviceInvokers.XMLHttp.get(
                 url,
