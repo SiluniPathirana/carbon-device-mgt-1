@@ -415,7 +415,7 @@ function loadDevices(searchType, searchParam) {
         $(row).attr('data-deviceid', htmlspecialchars(data.deviceIdentifier));
         $(row).attr('data-devicetype', htmlspecialchars(data.deviceType));
         $(row).attr('data-url', context + '/device/' + htmlspecialchars(data.deviceType) + '?id='
-                + htmlspecialchars(data.deviceIdentifier) + '&owner=' + cleanedOwner ;
+                + htmlspecialchars(data.deviceIdentifier) + '&owner=' + cleanedOwner );
         var model = htmlspecialchars(getPropertyValue(data.properties, 'DEVICE_MODEL'));
         var vendor = htmlspecialchars(getPropertyValue(data.properties, 'VENDOR'));
         var owner = cleanedOwner
